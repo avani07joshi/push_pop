@@ -1,0 +1,154 @@
+// wap to perform push pop and peek in  multiple stacks
+#include<stdio.h>
+#define max 14
+int st[max],topa=-1,topb=max,val;
+void pusha(int st[],int val);
+void popa(int st[]);
+void peeka(int st[]);
+void displaya(int st[]);
+void pushb(int st[],int val);
+void popb(int st[]);
+void peekb(int st[]);
+void displayb(int st[]);
+int main()
+{
+	int val,ch;
+	do
+	{
+	printf("\n1. PUSH IN STACK A");
+	printf("\n2. POP IN STACK A");
+	printf("\n3. PEEK IN STACK A");
+	printf("\n4. DISPLAY IN STACK A");
+	printf("\n5. PUSH IN STACK B");
+	printf("\n6. POP IN STACK B");
+	printf("\n7. PEEK IN STACK B");
+	printf("\n8. DISPLAY IN STACK B");
+	printf("\n9. EXIT");
+	printf("\n\nselect an option from list:");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1:
+			printf("Enter number to be added in stack A");
+			scanf("%d",&val);
+			pusha(st,val);
+			break;
+		case 2:
+			popa(st);
+			break;
+		case 3:
+			peeka(st);
+			break;
+		case 4:
+			displaya(st);
+			break;
+		case 5:
+			printf("Enter number to be added in stack B");
+			scanf("%d",&val);
+			pushb(st,val);
+			break;
+		case 6:
+			popb(st);
+			break;
+		case 7:
+			peekb(st);
+			break;
+		case 8:
+			displayb(st);
+			break;
+		case 9:
+			printf("EXIT");
+			break;
+		default:
+		    printf("!!!Wrong choice!!!");
+	}}
+	while(ch<9);
+	return 0;
+}
+//for push in stack A
+void pusha(int st[],int val)
+{
+	if(topa == (topb-1))
+	   printf("Stack Overflow");
+	else 
+	   topa++;
+	   st[topa]=val;
+}
+//for push in stack B
+void pushb(int st[],int val)
+{
+	if(topb == (topa+1))
+	   printf("Stack Overflow");
+	else 
+	   topb--;
+	   st[topb]=val;
+}
+//for pop in stack A
+void popa(int st[])
+{
+	if(topa == -1)
+	   printf("Stack underflow");
+	else
+	   val=st[topa];
+	  
+	   printf("%d is the value deleted from stack",val);
+	    topa--;	   
+}
+//for pop in stack B
+void popb(int st[])
+{
+	if(topb == max)
+	   printf("Stack underflow");
+	else
+	   val=st[topb];
+	  
+	   printf("%d is the value deleted from stack",val);
+	   topb++;	   
+}
+
+//for peek in stack A
+void peeka(int st[])
+{
+	if(topa==-1)
+	  printf("Stack underflow");
+	else
+    	{
+		  val=st[topa];
+	      printf("value at top of stack a is %d",val);
+	    }
+}
+//for peek in stack B
+void peekb(int st[])
+{
+	if(topb==max)
+	  printf("Stack underflow");
+	else
+    	{
+		  val=st[topb];
+	      printf("value at top is %d",val);
+	    }
+}
+//for display in stack A
+void displaya(int st[])
+{
+	int i;
+	if(topa==-1)
+	   printf("Stack is empty");
+	else
+	{
+		for(i=topa;i>=0;i--)
+	    	printf("%d\n",st[i]);
+	}
+}
+//for display in stack B
+void displayb(int st[])
+{
+	int i;
+	if(topb==max)
+	   printf("Stack is empty");
+	else
+	{
+		for(i=topb;i<=max;i++)
+	    	printf("%d\n",st[i]);
+	}
+}
